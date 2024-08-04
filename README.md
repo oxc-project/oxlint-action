@@ -1,9 +1,25 @@
-# oxlint-action
+<p align="center">
+  <img alt="OXC Logo" src="https://cdn.jsdelivr.net/gh/oxc-project/oxc-assets/logo-square.png" width="200">
+</p>
 
-Run [Oxlint](https://github.com/oxc-project/oxc) on your project.
+<div align="center">
+
+[![OXC Stars][oxc-stars-badge]][oxc-github-url]
+[![Website][website-badge]][website-url]
+[![npm][npm-badge]][npm-url]
+[![Discord chat][discord-badge]][discord-url]
+
+</div>
+
+## ⚓ Run [Oxlint][oxc-github-url] on your repo
+
+This action lints your JS/TS codebase with
+[Oxlint][oxc-github-url] and attaches reported issues as
+annotations. Pull requests will only have their changed files linted by default.
+
 
 ## Quick Start
-
+Here's a minimal example to get you started:
 ```yaml
 # .github/workflows/ci.yml
 name: CI
@@ -28,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: DonIsaac/oxlint-action@latest
+      - uses: oxc-project/oxlint-action@latest
         with:
           # Allow, Warn, or Deny specific lint rules or entire categories
           # https://oxc.rs/docs/guide/usage/linter/cli.html#enable-plugins
@@ -44,7 +60,7 @@ jobs:
 ```
 
 ## Example
-
+Here's a more complete example with all available options:
 ```yaml
 name: Lint
 on: [push, pull_request]
@@ -54,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: DonIsaac/oxlint-action@latest
+    - uses: oxc-project/oxlint-action@latest
       with:
         # Specify an Oxlint config file if you already have one. Oxlint is also
         # compatible with JSON ESLint configs (v8 and lower).
@@ -98,3 +114,12 @@ jobs:
         # See: https://www.npmjs.com/package/oxlint
         version: latest
 ```
+
+[oxc-stars-badge]: https://img.shields.io/github/stars/oxc-project/oxc?style=social
+[oxc-github-url]: https://github.com/oxc-project/oxc
+[npm-badge]: https://img.shields.io/npm/v/oxlint/latest?color=brightgreen
+[npm-url]: https://www.npmjs.com/package/oxlint/v/latest
+[website-badge]: https://img.shields.io/badge/Website-blue
+[website-url]: https://oxc.rs
+[discord-badge]: https://img.shields.io/discord/1079625926024900739?logo=discord&label=Discord
+[discord-url]: https://discord.gg/9uXCAwqQZW
