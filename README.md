@@ -6,6 +6,7 @@
 
 [![OXC Stars][oxc-stars-badge]][oxc-github-url]
 [![Website][website-badge]][website-url]
+[![CI](https://github.com/oxc-project/oxlint-action/actions/workflows/ci.yml/badge.svg)](https://github.com/oxc-project/oxlint-action/actions/workflows/ci.yml)
 [![npm][npm-badge]][npm-url]
 [![Discord chat][discord-badge]][discord-url]
 
