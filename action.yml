@@ -1,0 +1,123 @@
+name: "Oxlint"
+description: "Lint your code with Oxlint"
+author: Don Isaac
+branding:
+  icon: anchor
+  color: blue
+
+inputs:
+  version:
+    description: "Oxlint SemVer version pattern to use"
+    required: false
+    default: "latest"
+
+  allow:
+    description: "Categories and lints to allow, separated by whitespace"
+    required: false
+    default: ""
+
+  deny:
+    description: "Categories and lints to deny, separated by whitespace"
+    required: false
+    default: ""
+
+  warn:
+    description: "Categories and lints to warn about, separated by whitespace"
+    required: false
+    default: "correctness"
+
+  max-warnings:
+    description: "Maximum number of warnings allowed. By default, no maximum is enforced."
+    required: false
+
+  deny-warnings:
+    description: "Fail the check if there are any warnings."
+    required: false
+    default: "false"
+
+  plugins:
+    description: "Comma-separated list of plugins to enable"
+    required: false
+    default: ""
+
+  plugins-disable:
+    description: "Comma-separated list of plugins to disable"
+    required: false
+    default: ""
+
+  config:
+    description: "Path to Oxlint or ESLint configuration file. Only JSON is supported."
+    required: false
+    default: ""
+
+  all-files:
+    description: "Lint all files, not just changed ones. Only affects PRs."
+    required: false
+    default: "false"
+
+  base-branch:
+    description: "Base branch to diff PR branches against."
+    required: false
+    default: ""  # Default to PR target branch
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set Base Branch
+      id: base-branch
+      shell: bash
+      if: github.event_name == 'pull_request'
+      run: |
+        if [ -z "${{ inputs.base-branch }}" ]; then
+          echo "Base branch not set. Defaulting to target branch of PR."
+          echo "base-branch=${{ github.event.pull_request.base.ref }}" >> "$GITHUB_OUTPUT"
+        else
+          echo "base-branch=${{ inputs.base-branch }}" >> "$GITHUB_OUTPUT"
+        fi
+
+    - name: Fetch Base Branch
+      shell: bash
+      if: github.event_name == 'pull_request'
+      run: |
+        git fetch origin $BASE_BRANCH:$BASE_BRANCH --depth=1
+        # git branch --track $BASE_BRANCH origin/$BASE_BRANCH
+      env:
+        BASE_BRANCH: ${{ steps.base-branch.outputs.base-branch }}
+
+    - name: Check For NPX
+      shell: bash
+      run: |
+        if ! command -v npx &> /dev/null
+        then
+          echo "::error title=Node.js not found::npx could not be found. Please install Node.js."
+          exit 1
+        fi
+
+    - name: Run Oxlint (Changed Files)
+      shell: bash
+      if: github.event_name == 'pull_request' && ${{ inputs.all-files }} == 'false'
+      run: |
+        echo "::group::Run Oxlint (Changed Files)"
+        files=$(git diff --name-only ${{ steps.base-branch.outputs.base-branch }} ${{ github.sha }})
+        echo "::debug::Files:"
+        echo "::debug::${files}"
+        $GITHUB_ACTION_PATH/oxlint.sh $files
+        echo "::endgroup::"
+      env:
+        OXLINT_VERSION: ${{ inputs.version }}
+        OXLINT_DENY: ${{ inputs.deny }}
+        OXLINT_WARN: ${{ inputs.warn }}
+        OXLINT_ALLOW: ${{ inputs.allow }}
+        OXLINT_MAX_WARNINGS: ${{ inputs.max-warnings }}
+        OXLINT_DENY_WARNINGS: ${{ inputs.deny-warnings }}
+        OXLINT_PLUGINS: ${{ inputs.plugins }}
+        OXLINT_PLUGINS_DISABLE: ${{ inputs.plugins-disable }}
+        OXLINT_CONFIG: ${{ inputs.config }}
+
+    - name: Run Oxlint (All Files)
+      shell: bash
+      if: github.event_name != 'pull_request' || ${{ inputs.all-files }} == 'true'
+      run: |
+        echo "::group::Run Oxlint (All Files)"
+        $GITHUB_ACTION_PATH/oxlint.sh
+        echo "::endgroup::"

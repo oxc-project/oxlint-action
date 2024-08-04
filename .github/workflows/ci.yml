@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Typos
+        uses: crate-ci/typos@master
+
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@master
+
+      - name: Run Yamllint
+        uses: karancode/yamllint-github-action@master
+        with:
+          yamllint_config_filepath: .yamllint.yml
+          yamllint_strict: true
+          yamllint_comment: true
+        env:
+          # needed to post comments
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
