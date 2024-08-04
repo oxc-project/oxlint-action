@@ -19,7 +19,7 @@ This action lints your JS/TS codebase with
 annotations. Pull requests will only have their changed files linted by default.
 
 
-## Quick Start
+## ⚡ Quick Start
 Here's a minimal example to get you started:
 ```yaml
 # .github/workflows/ci.yml
