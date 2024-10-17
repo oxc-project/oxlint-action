@@ -8,13 +8,13 @@ if [ -n "$OXLINT_CONFIG" ]; then
     if [ ! -f "$OXLINT_CONFIG" ]; then
         echo "::error file={$OXLINT_CONFIG}::Config file not found: $OXLINT_CONFIG"
         exit 1
-        
+
         # check if the config file is js, which is not supported
         elif [ "${OXLINT_CONFIG##*.}" = "js" ]; then
         echo "::error file={$OXLINT_CONFIG}::Oxlint only supports JSON files. Please convert your config file to JSON."
         exit 1
     fi
-    
+
     config="--config $OXLINT_CONFIG"
 fi
 
@@ -29,7 +29,7 @@ fi
 # build disable plugin args
 # map whitespace-separated `name` to `--disable-name-plugin`
 if [ -n "$OXLINT_PLUGINS_DISABLE" ]; then
-    disable_plugins="$(echo "$OXLINT_PLUGINS_DISABLE" | xargs | sed -e 's/ / --disable-/g' -e 's/^/--disable/')-plugin"
+    disable_plugins="$(echo "$OXLINT_PLUGINS_DISABLE" | xargs | sed -e 's/ / --disable-/g' -e 's/^/--disable-/')-plugin"
 fi
 
 OXLINT_ARGS="$OXLINT_ARGS $plugins $disable_plugins"
