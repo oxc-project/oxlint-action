@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="OXC Logo" src="https://cdn.jsdelivr.net/gh/oxc-project/oxc-assets/logo-square.png" width="200">
+  <img alt="OXC Logo" src="https://cdn.jsdelivr.net/gh/oxc-project/oxc-assets/square-bubbles.svg" width="200">
 </p>
 
 <div align="center">
