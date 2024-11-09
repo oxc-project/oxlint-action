@@ -23,13 +23,13 @@ OXLINT_ARGS="$config"
 # Build plugin args
 # map whitespace-separated `name` to `--name-plugin`
 if [ -n "$OXLINT_PLUGINS" ]; then
-    plugins="$(echo "$OXLINT_PLUGINS" | xargs | sed -e 's/ / --/g' -e 's/^/--/')-plugin"
+    plugins="$(echo "$OXLINT_PLUGINS" | xargs | sed -e 's/ / --plugin-/g' -e 's/^/--plugin-/')"
 fi
 
 # build disable plugin args
 # map whitespace-separated `name` to `--disable-name-plugin`
 if [ -n "$OXLINT_PLUGINS_DISABLE" ]; then
-    disable_plugins="$(echo "$OXLINT_PLUGINS_DISABLE" | xargs | sed -e 's/ / --disable-/g' -e 's/^/--disable-/')-plugin"
+    disable_plugins="$(echo "$OXLINT_PLUGINS_DISABLE" | xargs | sed -e 's/ /-plugin --disable-/g' -e 's/^/--disable-/')-plugin"
 fi
 
 OXLINT_ARGS="$OXLINT_ARGS $plugins $disable_plugins"
