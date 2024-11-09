@@ -29,13 +29,13 @@ on:
     branches:
       - main
     types: [opened, synchronize]
-    paths_ignore:
+    paths-ignore:
       - "*.md"
       - "*.json"
   push:
     branches:
       - main
-    paths_ignore:
+    pathsignore:
       - "*.md"
       - "*.json"
 
@@ -48,7 +48,7 @@ jobs:
       - uses: oxc-project/oxlint-action@latest
         with:
           # Allow, Warn, or Deny specific lint rules or entire categories
-          # https://oxc.rs/docs/guide/usage/linter/cli.html#enable-plugins
+          # https://oxc.rs/docs/guide/usage/linter/cli.html#allowing-denying-multiple-lints
           deny: |
             correctness
             no-eval
