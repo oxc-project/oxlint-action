@@ -35,7 +35,7 @@ on:
   push:
     branches:
       - main
-    pathsignore:
+    paths-ignore:
       - "*.md"
       - "*.json"
 
