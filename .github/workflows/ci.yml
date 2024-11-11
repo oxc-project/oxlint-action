@@ -16,16 +16,13 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: taiki-e/checkout-action@v1
 
-      - name: Typos
-        uses: crate-ci/typos@master
+      - uses: crate-ci/typos@master
 
-      - name: Run ShellCheck
-        uses: ludeeus/action-shellcheck@master
+      - uses: ludeeus/action-shellcheck@master
 
-      - name: Run Yamllint
-        uses: karancode/yamllint-github-action@master
+      - uses: karancode/yamllint-github-action@master
         with:
           yamllint_config_filepath: .yamllint.yml
           yamllint_strict: true
@@ -33,3 +30,10 @@ jobs:
         env:
           # needed to post comments
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  lint:
+    name: Oxlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oxc-project/oxlint-action@v2.0.0
