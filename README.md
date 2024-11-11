@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: oxc-project/oxlint-action@latest
+      - uses: oxc-project/oxlint-action@v2.0.0
         with:
           # Allow, Warn, or Deny specific lint rules or entire categories
           # https://oxc.rs/docs/guide/usage/linter/cli.html#allowing-denying-multiple-lints
@@ -85,7 +85,7 @@ jobs:
         # for a list of categories and rules.
         allow: |
           no-namespace
-          for-direction          
+          for-direction
         warn: |
           correctness
           suspicious
