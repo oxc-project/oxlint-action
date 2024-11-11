@@ -1,4 +1,4 @@
-name: "Oxlint"
+name: "Oxlint Action"
 description: "Lint your code with Oxlint"
 author: Don Isaac and Oxc Contributors
 branding:
