@@ -95,7 +95,7 @@ runs:
 
     - name: Run Oxlint (Changed Files)
       shell: bash
-      if: github.event_name == 'pull_request' && ${{ inputs.all-files }} == 'false'
+      if: github.event_name == 'pull_request' && inputs.all-files == 'false'
       run: |
         echo "::group::Run Oxlint (Changed Files)"
         files=$(git diff --name-only ${{ steps.base-branch.outputs.base-branch }} ${{ github.sha }})
@@ -116,7 +116,7 @@ runs:
 
     - name: Run Oxlint (All Files)
       shell: bash
-      if: github.event_name != 'pull_request' || ${{ inputs.all-files }} == 'true'
+      if: github.event_name != 'pull_request' || inputs.all-files == 'true'
       run: |
         echo "::group::Run Oxlint (All Files)"
         $GITHUB_ACTION_PATH/oxlint.sh
