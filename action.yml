@@ -1,6 +1,6 @@
 name: "Oxlint Action"
 description: "Lint your code with Oxlint"
-author: Don Isaac and Oxc Contributors
+author: Oxc Contributors
 branding:
   icon: anchor
   color: blue
