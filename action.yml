@@ -60,6 +60,11 @@ inputs:
     required: false
     default: ""  # Default to PR target branch
 
+  working-directory:
+    description: "Working directory to run oxlint in."
+    required: false
+    default: ""
+
 runs:
   using: "composite"
   steps:
@@ -96,9 +101,10 @@ runs:
     - name: Run Oxlint (Changed Files)
       shell: bash
       if: github.event_name == 'pull_request' && inputs.all-files == 'false'
+      working-directory: ${{ inputs.working-directory }}
       run: |
         echo "::group::Run Oxlint (Changed Files)"
-        files=$(git diff --name-only ${{ steps.base-branch.outputs.base-branch }} ${{ github.sha }})
+        files=$(git diff --name-only --relative ${{ steps.base-branch.outputs.base-branch }} ${{ github.sha }})
         echo "::debug::Files:"
         echo "::debug::${files}"
         $GITHUB_ACTION_PATH/oxlint.sh $files
@@ -117,6 +123,7 @@ runs:
     - name: Run Oxlint (All Files)
       shell: bash
       if: github.event_name != 'pull_request' || inputs.all-files == 'true'
+      working-directory: ${{ inputs.working-directory }}
       run: |
         echo "::group::Run Oxlint (All Files)"
         $GITHUB_ACTION_PATH/oxlint.sh

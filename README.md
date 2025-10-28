@@ -18,6 +18,8 @@ This action lints your JS/TS codebase with
 [Oxlint][oxc-github-url] and attaches reported issues as
 annotations. Pull requests will only have their changed files linted by default.
 
+For monorepos, you can use the `working-directory` input to lint only a specific subdirectory.
+
 
 ## ⚡ Quick Start
 Here's a minimal example to get you started:
@@ -114,6 +116,10 @@ jobs:
         # pattern. This gets forwarded to npx. By default, 'latest' is used.
         # See: https://www.npmjs.com/package/oxlint
         version: latest
+
+        # Specify a working directory to run oxlint in. Useful for monorepos
+        # where you want to lint only a specific subdirectory.
+        working-directory: frontend
 ```
 
 [oxc-stars-badge]: https://img.shields.io/github/stars/oxc-project/oxc?style=social
