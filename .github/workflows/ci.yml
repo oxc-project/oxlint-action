@@ -16,7 +16,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: taiki-e/checkout-action@v1
+      - uses: taiki-e/checkout-action@b13d20b7cda4e2f325ef19895128f7ff735c0b3d # v1.3.1
 
       - uses: crate-ci/typos@master
 
@@ -35,5 +35,5 @@ jobs:
     name: Oxlint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: oxc-project/oxlint-action@v2.0.1
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+      - uses: oxc-project/oxlint-action@d77e44ee001f4d94c4191fdb03af8be0c98f3d35 # v2.0.1
