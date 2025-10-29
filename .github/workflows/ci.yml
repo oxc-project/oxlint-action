@@ -20,7 +20,7 @@ jobs:
 
       - uses: crate-ci/typos@80c8a4945eec0f6d464eaf9e65ed98ef085283d1 # v1.38.1
 
-      - uses: ludeeus/action-shellcheck@v2
+      - uses: ludeeus/action-shellcheck@2
 
       - uses: karancode/yamllint-github-action@4052d365f09b8d34eb552c363d1141fd60e2aeb2 # v3.0.0
         with:
