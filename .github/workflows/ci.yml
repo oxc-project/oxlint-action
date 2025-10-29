@@ -27,13 +27,11 @@ jobs:
           yamllint_config_filepath: .yamllint.yml
           yamllint_strict: true
           yamllint_comment: true
-        env:
-          # needed to post comments
-          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   lint:
     name: Oxlint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+      - uses: taiki-e/checkout-action@b13d20b7cda4e2f325ef19895128f7ff735c0b3d # v1.3.1
+
       - uses: oxc-project/oxlint-action@d77e44ee001f4d94c4191fdb03af8be0c98f3d35 # v2.0.1
