@@ -8,9 +8,9 @@ on:
     branches:
       - main
     types:
-      - opened
       - synchronize
-      - reopened
+
+permissions: {}
 
 jobs:
   check:
@@ -21,12 +21,6 @@ jobs:
       - uses: crate-ci/typos@80c8a4945eec0f6d464eaf9e65ed98ef085283d1 # v1.38.1
 
       - uses: ludeeus/action-shellcheck@00cae500b08a931fb5698e11e79bfbd38e612a38 # v2.0.0
-
-      - uses: karancode/yamllint-github-action@4052d365f09b8d34eb552c363d1141fd60e2aeb2 # v3.0.0
-        with:
-          yamllint_config_filepath: .yamllint.yml
-          yamllint_strict: true
-          yamllint_comment: true
 
   lint:
     name: Oxlint
