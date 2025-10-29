@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: taiki-e/checkout-action@v1
 
-      - uses: crate-ci/typos@v1
+      - uses: crate-ci/typos@80c8a4945eec0f6d464eaf9e65ed98ef085283d1 # v1.38.1
 
       - uses: ludeeus/action-shellcheck@v2
 
