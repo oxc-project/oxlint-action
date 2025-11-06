@@ -24,7 +24,7 @@ inputs:
   warn:
     description: "Categories and lints to warn about, separated by whitespace"
     required: false
-    default: "correctness"
+    default: ""
 
   max-warnings:
     description: "Maximum number of warnings allowed. By default, no maximum is enforced."

@@ -81,8 +81,8 @@ jobs:
         config: .oxlintrc.json
 
         # allow/warn/deny all take a whitespace separate list of categories or
-        # rules to allow, warn or deny. By default, only violations for rules in
-        # the "correctness" category be warned.
+        # rules to allow, warn or deny. If not specified, oxlint will use the
+        # configuration from your config file, or oxlint's defaults.
         # See https://oxc.rs/docs/guide/usage/linter/cli.html#allowing-denying-multiple-lints
         # for a list of categories and rules.
         allow: |
