@@ -42,8 +42,6 @@ fi
 
 if [ -n "$OXLINT_WARN" ]; then
     warn_list="$(echo "$OXLINT_WARN" | xargs | sed -e 's/ / -W /g' -e 's/^/-W /')"
-else
-    warn_list="-W correctness"
 fi
 
 if [ -n "$OXLINT_DENY" ]; then
