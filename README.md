@@ -1,5 +1,16 @@
 <p align="center">
-  <img alt="OXC Logo" src="https://cdn.jsdelivr.net/gh/oxc-project/oxc-assets/square-bubbles.svg" width="200">
+  <br>
+  <br>
+  <a href="https://oxc.rs" target="_blank" rel="noopener noreferrer">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://oxc.rs/oxc-light.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://oxc.rs/oxc-dark.svg">
+      <img alt="Oxc logo" src="https://oxc.rs/oxc-dark.svg" height="60">
+    </picture>
+  </a>
+  <br>
+  <br>
+  <br>
 </p>
 
 <div align="center">
@@ -121,6 +132,14 @@ jobs:
         # where you want to lint only a specific subdirectory.
         working-directory: frontend
 ```
+
+## ❤ Who's [Sponsoring Oxc](https://github.com/sponsors/Boshen)?
+
+<p align="center">
+  <a href="https://github.com/sponsors/Boshen">
+    <img src="https://raw.githubusercontent.com/Boshen/sponsors/main/sponsors.svg" alt="My sponsors" />
+  </a>
+</p>
 
 [oxc-stars-badge]: https://img.shields.io/github/stars/oxc-project/oxc?style=social
 [oxc-github-url]: https://github.com/oxc-project/oxc
