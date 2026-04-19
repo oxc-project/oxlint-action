@@ -72,12 +72,15 @@ runs:
       id: base-branch
       shell: bash
       if: github.event_name == 'pull_request'
+      env:
+        BASE_BRANCH_INPUT: ${{ inputs.base-branch }}
+        PR_BASE_REF: ${{ github.event.pull_request.base.ref }}
       run: |
-        if [ -z "${{ inputs.base-branch }}" ]; then
+        if [ -z "$BASE_BRANCH_INPUT" ]; then
           echo "Base branch not set. Defaulting to target branch of PR."
-          echo "base-branch=${{ github.event.pull_request.base.ref }}" >> "$GITHUB_OUTPUT"
+          echo "base-branch=$PR_BASE_REF" >> "$GITHUB_OUTPUT"
         else
-          echo "base-branch=${{ inputs.base-branch }}" >> "$GITHUB_OUTPUT"
+          echo "base-branch=$BASE_BRANCH_INPUT" >> "$GITHUB_OUTPUT"
         fi
 
     - name: Fetch Base Branch

@@ -66,8 +66,29 @@ OXLINT_ARGS="$OXLINT_ARGS --format github"
 
 echo "::debug::Args: $OXLINT_ARGS"
 
+if [ "$#" -gt 0 ]; then
+    lintable_files=()
+    for file in "$@"; do
+        if [ ! -f "$file" ]; then
+            continue
+        fi
+
+        case "$file" in
+            *.js|*.jsx|*.mjs|*.cjs|*.ts|*.tsx|*.mts|*.cts|*.vue|*.astro|*.svelte)
+                lintable_files+=("$file")
+                ;;
+        esac
+    done
+
+    if [ "${#lintable_files[@]}" -eq 0 ]; then
+        echo "No supported files changed. Skipping oxlint."
+        exit 0
+    fi
+
+    set -- "${lintable_files[@]}"
+fi
 
 # Files to lint are passed as arguments. For non-prs, no arguments are passed,
 # which defaults to all VCS files.
-# shellcheck disable=SC2068,SC2086
-npx oxlint@$OXLINT_VERSION $OXLINT_ARGS ${@:1}
+# shellcheck disable=SC2086
+npx oxlint@$OXLINT_VERSION $OXLINT_ARGS "$@"
