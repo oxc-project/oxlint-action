@@ -107,10 +107,23 @@ runs:
       working-directory: ${{ inputs.working-directory }}
       run: |
         echo "::group::Run Oxlint (Changed Files)"
-        files=$(git diff --name-only --relative ${{ steps.base-branch.outputs.base-branch }} ${{ github.sha }})
+        filtered_files=()
+
+        while IFS= read -r -d '' file; do
+          if [ -n "$file" ]; then
+            filtered_files+=("$file")
+          fi
+        done < <(git diff -z --name-only --relative ${{ steps.base-branch.outputs.base-branch }} ${{ github.sha }})
+
+        if [ "${#filtered_files[@]}" -eq 0 ]; then
+          echo "No changed files found. Skipping oxlint."
+          echo "::endgroup::"
+          exit 0
+        fi
+
         echo "::debug::Files:"
-        echo "::debug::${files}"
-        $GITHUB_ACTION_PATH/oxlint.sh $files
+        echo "::debug::${filtered_files[*]}"
+        $GITHUB_ACTION_PATH/oxlint.sh "${filtered_files[@]}"
         echo "::endgroup::"
       env:
         OXLINT_VERSION: ${{ inputs.version }}
