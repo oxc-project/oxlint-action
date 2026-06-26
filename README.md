@@ -114,7 +114,7 @@ jobs:
         plugins-disable: react
 
         # By default, oxlint-action will only lint changed files when run on
-        # pull requests. To disable this behavior, set this to false.
+        # pull requests. To disable this behavior, set this to true.
         # Note that this setting has no affect on any other kind of trigger.
         all-files: false
 
