@@ -133,14 +133,6 @@ jobs:
         working-directory: frontend
 ```
 
-## ❤ Who's [Sponsoring Oxc](https://github.com/sponsors/Boshen)?
-
-<p align="center">
-  <a href="https://github.com/sponsors/Boshen">
-    <img src="https://raw.githubusercontent.com/Boshen/sponsors/main/sponsors.svg" alt="My sponsors" />
-  </a>
-</p>
-
 [oxc-stars-badge]: https://img.shields.io/github/stars/oxc-project/oxc?style=social
 [oxc-github-url]: https://github.com/oxc-project/oxc
 [npm-badge]: https://img.shields.io/npm/v/oxlint/latest?color=brightgreen
@@ -149,3 +141,11 @@ jobs:
 [website-url]: https://oxc.rs
 [discord-badge]: https://img.shields.io/discord/1079625926024900739?logo=discord&label=Discord
 [discord-url]: https://discord.gg/9uXCAwqQZW
+
+## ❤ Who's [Sponsoring Oxc](https://github.com/sponsors/Boshen)?
+
+<p align="center">
+  <a href="https://github.com/sponsors/Boshen">
+    <img src="https://raw.githubusercontent.com/Boshen/sponsors/main/sponsors.svg" alt="Our sponsors" />
+  </a>
+</p>
